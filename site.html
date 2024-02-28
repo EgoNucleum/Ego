@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EgoNucleum - Site</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    position: relative; /* Add this line */
+  }
+
+  section {
+    padding: 100px 0;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #111, #000);
+    position: relative; /* Add this line */
+    z-index: 2; /* Add this line */
+  }
+
+  h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ff5722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    max-width: 80%;
+    line-height: 1.6;
+    margin: auto;
+    color: #fff;
+  }
+
+  .button {
+    padding: 20px 40px;
+    font-size: 1.5em;
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .button:hover {
+    background-color: #ff7043;
+  }
+
+  .footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.8em;
+    color: #888;
+    position: relative; /* Add this line */
+    z-index: 2; /* Add this line */
+  }
+
+  /* Add this section for the animated background */
+  #bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas> <!-- Add this line for the animated background -->
+
+<h1></h1>
+<p></br></p>
+
+<section>
+  <h2>Cosa Offriamo:</h2>
+  <p>Scopri le nostre sezioni dedicate alla programmazione, all'intelligenza artificiale e molto altro.</br></br></p>
+  <a href="services.html" class="button" style="text-decoration: none" >Esplora Ora </a>
+</section>
+
+<section style="background-image: linear-gradient(to bottom, #000, #111);">
+  <h2>Nucleo Team:</h2>
+  <p>Conosci i nostri esperti, maghi dell'innovazione, pronti a guidarti nel tuo viaggio verso il futuro.</br></br></p>
+  <a href="team.html" class="button" style="text-decoration: none" >Incontra il Team </a>
+</section>
+
+<section>
+  <h2>Contattaci:</h2>
+  <p>Hai domande? Vorresti collaborare con noi? Contattaci e saremo felici di rispondere a tutte le tue richieste.</br></br></p>
+  <a href="contact.html" class="button" style="text-decoration: none">Contattaci Ora</a>
+</section>
+
+<footer class="footer">
+  <p><a href="EgoNucleum.html" target="_blank" class="instagram-link" style="display: inline-block; padding: 5px 5px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 20px;">Home</a>
+&copy; 2024 EgoNucleum. Tutti i diritti riservati.</p>
+</footer>
+
+<script>
+  // Code for animated background and particles
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let starsArray;
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3;
+      this.speed = Math.random() * 0.5;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fill();
+    }
+
+    update() {
+      this.x -= this.speed;
+      if (this.x < 0) {
+        this.x = canvas.width;
+      }
+    }
+  }
+
+  function init() {
+    starsArray = [];
+    for (let i = 0; i < 200; i++) {
+      starsArray.push(new Star());
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    starsArray.forEach(star => {
+      star.draw();
+      star.update();
+    });
+  }
+
+  init();
+  animate();
+
+  // Particle effect on button click
+  const button = document.querySelector('.button');
+  button.addEventListener('click', function() {
+    for (let i = 0; i < 100; i++) {
+      createParticle();
+    }
+  });
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.top = `${Math.random() * 100}vh`;
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.width = `${Math.random() * 10}px`;
+    particle.style.height = particle.style.width;
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    particle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>

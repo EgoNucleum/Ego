@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contatti - Sito Web Fuori dal Comune</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+
+  #contact-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ff5722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<div id="contact-container">
+  <h2>Contattami:</h2>
+	<a href="https://www.instagram.com/the_freman_/" target="_blank" class="instagram-link" style="display: inline-block; padding: 10px 20px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 5px;">Instagram</a>
+	</br></br></br><a href="" target="_blank" class="instagram-link" style="display: inline-block; padding: 10px 20px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 5px;">linkedin</a>
+	</br></br></br><a href="https://www.fiverr.com/lelemagic?public_mode=true" target="_blank" class="instagram-link" style="display: inline-block; padding: 10px 20px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 5px;">fiverr</a>
+	</br></br></br><p>ad.microsoft.min@gmail.com</p></br><p>+39 339 367 4788</p></br></br></br></br></br></br>
+	<a href="EgoNucleum.html" target="_blank" class="instagram-link" style="display: inline-block; padding: 5px 5px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 20px;">Home</a>
+</div>
+
+<canvas id="bg"></canvas>
+
+<script>
+  // Codice dello sfondo animato e delle particelle
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let starsArray;
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3;
+      this.speed = Math.random() * 0.5;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fill();
+    }
+
+    update() {
+      this.x -= this.speed;
+      if (this.x < 0) {
+        this.x = canvas.width;
+      }
+    }
+  }
+
+  function init() {
+    starsArray = [];
+    for (let i = 0; i < 200; i++) {
+      starsArray.push(new Star());
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    starsArray.forEach(star => {
+      star.draw();
+      star.update();
+    });
+  }
+
+  init();
+  animate();
+
+  // Effetto particellare al click sul bottone
+  const button = document.querySelector('button[type="submit"]');
+  button.addEventListener('click', function() {
+    for (let i = 0; i < 100; i++) {
+      createParticle();
+    }
+  });
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.top = `${Math.random() * 100}vh`;
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.width = `${Math.random() * 10}px`;
+    particle.style.height = particle.style.width;
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    particle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>

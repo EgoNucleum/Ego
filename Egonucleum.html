@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EGONUCLEUM</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #111, #000);
+  }
+
+  h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: #ff5722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    max-width: 80%;
+    line-height: 1.6;
+  }
+
+  .button {
+    padding: 20px 40px;
+    font-size: 1.5em;
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .button:hover {
+    background-color: #ff7043;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1 style="font-size: 6em">EgoNucleum</h1>
+  <p>Esplora l'infinito potenziale della tecnologia di EgoNucleum. Siamo qui per aiutarti a realizzare le tue idee, i tuoi obiettivi e il tuo lavoro.</p>
+  <a href="site.html" class="button" style="text-decoration: none"<button class="button">Nucleum</button> </a>
+</div>
+
+<div class="footer">
+  <p>&copy; 2024 EgoNucleum. Tutti i diritti riservati.</p>
+</div>
+
+<script>
+  // Effetto parallasse al passaggio del mouse
+  const container = document.querySelector('.container');
+
+  container.addEventListener('mousemove', (e) => {
+    const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+    const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+    container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+  });
+
+  // Animazione al click sul bottone
+  const button = document.querySelector('.button');
+  button.addEventListener('click', () => {
+    button.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      button.style.transform = 'scale(1)';
+    }, 200);
+  });
+</script>
+
+</body>
+</html>
+

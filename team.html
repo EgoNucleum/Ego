@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nucleo Team - EgoNucleum</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+  }
+
+  section {
+    padding: 100px 100px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-member {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  .team-member img {
+    max-width: 40%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .team-member .description {
+    max-width: 50%;
+    text-align: left;
+  }
+
+  .team-member .description h3 {
+    margin-bottom: 10px;
+    color: #ff5722;
+  }
+
+  .team-member .description p {
+    line-height: 1.6;
+  }
+
+  .reverse {
+    flex-direction: row-reverse;
+  }
+
+  .footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.8em;
+    color: #888;
+    position: relative;
+    z-index: 2;
+  }
+
+  #bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<section>
+  <div class="team-member">
+    <img src="io.jpg" alt="Team Member 1">
+    <div class="description">
+      <h3>Lele</h3>
+      <p><b>Ruolo:</b> Sviluppatore Web & Designer</br></br>
+
+		<b>Background:</b> Emanuele Folli, un professionista appassionato della convergenza tra creatività e tecnologia. Con anni di esperienza da freelancer ha affinato le sue abilità sia nel design che nello sviluppo web, ha sviluppato un interesse per l'interfaccia utente (UI) e l'esperienza utente (UX), per creare esperienze digitali coinvolgenti e funzionali.</br>
+		</br><b>Competenze chiave:</b></br>
+		-<b>Sviluppo Web:</b> Possiede competenze approfondite in HTML5, CSS3 e JavaScript, ed è sempre aggiornato sulle ultime tecnologie e framework come React.js e Angular.js. Ha una solida comprensione delle best practice di sviluppo web e ottimizzazione delle prestazioni.</br>
+		-<b>Design:</b> Grazie alla sua formazione in design multimediale, ha un occhio attento per il design estetico e funzionale. È esperto nell'uso di strumenti come Adobe Photoshop, Illustrator, Sketch e sketchbook per creare layout accattivanti e grafiche di alta qualità.</br>
+		-<b>UX/UI Design:</b> Alessandro integra le sue competenze di design con una profonda comprensione dell'UX e dell'UI design. È in grado di condurre ricerche utente, creare wireframe e prototipi interattivi, nonché ottimizzare l'usabilità e l'accessibilità delle applicazioni web.</br>
+		-<b>Comunicazione e Collaborazione:</b> Comunicatore efficace e collaborativo. È in grado di tradurre le esigenze del cliente in soluzioni tecniche e di lavorare in modo sinergico con designer, sviluppatori e stakeholder per raggiungere obiettivi comuni.</br>
+		-<b>Progettazione:</b> Collabora strettamente con i designer per tradurre i loro concept in soluzioni web interattive e coinvolgenti, mentre supporta gli sviluppatori nella scrittura di codice pulito e efficiente. La sua capacità di unire design e sviluppo lo rende un prezioso attivo per il team, contribuendo a fornire prodotti finali di alta qualità che soddisfano alti standard estetici e funzionali.</p>
+    </div>
+  </div>
+
+  <div class="team-member reverse">
+    <div class="description">
+      <h3>Boncio</h3>
+      <p>Un grande</p>
+    </div>
+    <img src="simo.jpeg" alt="Team Member 2">
+  </div>
+
+  <!-- Ripeti questo modello per ogni membro del team -->
+
+</section>
+
+<footer class="footer">
+  <p><a href="EgoNucleum.html" target="_blank" class="instagram-link" style="display: inline-block; padding: 5px 5px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 20px;">Home</a>
+&copy; 2024 EgoNucleum. Tutti i diritti riservati.</p>
+</footer>
+
+<script>
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let starsArray;
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3;
+      this.speed = Math.random() * 0.5;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fill();
+    }
+
+    update() {
+      this.x -= this.speed;
+      if (this.x < 0) {
+        this.x = canvas.width;
+      }
+    }
+  }
+
+  function init() {
+    starsArray = [];
+    for (let i = 0; i < 200; i++) {
+      starsArray.push(new Star());
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    starsArray.forEach(star => {
+      star.draw();
+      star.update();
+    });
+  }
+
+  init();
+  animate();
+</script>
+
+</body>
+</html>

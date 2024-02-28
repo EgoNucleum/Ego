@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servizi - Sito Web Fuori dal Comune</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  p {
+    transition: all 1s ease; /* Effetto di transizione fluida */
+  }
+  
+  p:hover {
+    font-size: 20px;
+  }
+  
+  p:not(:hover) {
+    font-size: 3px;
+  }
+
+  #services-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    overflow-y: auto; /* Aggiungi scroll verticale quando necessario */
+    max-height: 80vh; /* Imposta l'altezza massima del contenitore */
+  }
+	
+  #services-container::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+  
+  h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ff5722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .service {
+    margin-bottom: 40px;
+  }
+
+  .service h3 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="services-container">
+  <h2>I Nostri Servizi:</h2>
+  <section class="service">
+    <h3 >Sviluppo Web</h3>
+    <p>Immersi nel mondo digitale in continua evoluzione, ci impegniamo a plasmare il futuro online dei nostri clienti attraverso soluzioni web su misura. </br>Presso EgoNucleum, non offriamo solo servizi di sviluppo web, ma costruiamo ponti virtuali tra le visioni dei nostri clienti e il potenziale illimitato del web.</br>Ciò che ci distingue è la nostra dedizione a comprendere appieno le esigenze uniche di ogni cliente.</br> Non ci limitiamo a seguire uno schema predefinito, ma ci immergiamo nelle loro aspirazioni, sfide e obiettivi, per creare soluzioni che siano non solo funzionali, ma anche emotivamente coinvolgenti ed esteticamente sbalorditive. </br>Il nostro team di sviluppatori web, dotato di una gamma varia di competenze e esperienze, è pronto a tradurre le idee dei clienti in realtà, attraverso tecnologie sempre aggiornate, per garantire che ogni progetto sia all'avanguardia e in grado di adattarsi rapidamente alle mutevoli esigenze del mercato. </br>Dalla progettazione allo sviluppo di siti web efficaci ma soprattutto intuitivi, siamo in grado di soddisfare una vasta gamma di richieste. </br>La nostra attenzione ai dettagli, insieme alla nostra passione per l'innovazione, si riflette in ogni interfaccia che ideiamo.</br>Inoltre, la nostra collaborazione non si esaurisce con il lancio del sito.</br>Offriamo un supporto continuo e una consulenza esperta, per garantire che le soluzioni che forniamo continuino a raggiungere e superare gli obiettivi aziendali nel tempo. </br>Affidarsi a EgoNucleum significa investire in un partenariato duraturo e in soluzioni web che non solo soddisfano le aspettative, ma le superano. </br>Unisciti a noi nel plasmare il futuro e trasforma le tue visioni in realtà oggi stesso.</p>
+  </section>
+  <section class="service">
+    <h3>Web design</h3>
+    <p>Con EgoNucleum, ci impegniamo a creare design accattivanti e intuitivi per i siti web e le applicazioni dei nostri clienti. </br>Il nostro team di designer combina creatività e conoscenza tecnica per sviluppare interfacce che catturino l'attenzione e offrono un'esperienza utente straordinaria. </br>Ogni progetto è guidato dalla nostra passione per l'univocità e la funzionalità, garantendo che ogni dettaglio sia curato con precisione. </br>Che tu stia cercando di rinnovare il tuo sito web o di crearlo da zero, siamo qui per trasformare la tua visione in . </br>Affidati a noi per un design che si distingua e lasci un'impressione duratura sui tuoi visitatori.</p>
+  </section>
+  <section class="service">
+    <h3>Montaggio video</h3>
+    <p>Siamo specializzati nell'utilizzo di Microsoft Clipchamp, ci distinguiamo creando narrazioni coinvolgenti attraverso una perfetta fusione di contenuti. </br>Ci impegniamo per offrire risultati professionali e di alta qualità, trasformando le vostre idee in video coinvolgenti e memorabili. </br>Dalla precisione nei tagli alla fluidità delle transizioni e all'arricchimento visivo con effetti e correzione del colore, ci adattiamo per soddisfare qualunque esigenza creativa e comunicativa. </br>Affidatevi alla nostra competenza per dare vita ai vostri progetti con stile..</p>
+  </section>
+  <section class="service">
+    <h3>Intelligenza Artificiale</h3>
+    <p>"Siamo esperti nella gestione, nel controllo e nell' insegnamento dell'intelligenza artificiale, ci impegniamo a fornire sempre soluzioni innovative ed efficaci. </br>Con competenza nell'uso delle più recenti tecnologie, sviluppiamo strategie su misura per ottimizzare i processi aziendali. </br>Offriamo consulenza specialistica e formazione mirata per massimizzare il potenziale dell'IA nella vostra attività. </br>Affidatevi alla nostra esperienza per accompagnarvi verso il successo nell'era dell'intelligenza artificiale." </p>
+  </section>
+  <section class="service">
+    <a href="EgoNucleum.html" target="_blank" class="instagram-link" style="display: inline-block; padding: 5px 5px; background-color: #ff5722; color: #fff; text-decoration: none; border-radius: 20px;">Home</a>
+  </section>
+</div>
+
+<canvas id="bg"></canvas>
+
+<script>
+
+  // Codice dello sfondo animato e delle particelle
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let starsArray;
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3;
+      this.speed = Math.random() * 0.5;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fill();
+    }
+
+    update() {
+      this.x -= this.speed;
+      if (this.x < 0) {
+        this.x = canvas.width;
+      }
+    }
+  }
+
+  function init() {
+    starsArray = [];
+    for (let i = 0; i < 200; i++) {
+      starsArray.push(new Star());
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    starsArray.forEach(star => {
+      star.draw();
+      star.update();
+    });
+  }
+
+  init();
+  animate();
+
+  // Effetto particellare al click sul bottone
+  const button = document.querySelector('button[type="submit"]');
+  button.addEventListener('click', function() {
+    for (let i = 0; i < 100; i++) {
+      createParticle();
+    }
+  });
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.top = `${Math.random() * 100}vh`;
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.width = `${Math.random() * 10}px`;
+    particle.style.height = particle.style.width;
+    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    particle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
+
